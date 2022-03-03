@@ -58,7 +58,7 @@ extension CharactersViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CharacterCell", for: indexPath) as! CharacterCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CharacterCell", for: indexPath) as! CharacterCollectionViewCell
         if let characterViewModel = viewModel.characterModels?[indexPath.row] {
             cell.use(characterViewModel)
         }
@@ -70,21 +70,5 @@ extension CharactersViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size: CGFloat = (self.view.frame.width - 24 - 24) / 3
         return CGSize(width: size, height: size)
-    }
-}
-
-class CharacterCell: UICollectionViewCell {
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    
-    func use(_ viewModel: CharacterViewModel) {
-        self.nameLabel.text = viewModel.nameText
-        if let url = URL(string: viewModel.imageUrl) {
-            do {
-                self.imageView.image = try UIImage(data: Data(contentsOf: url))
-            } catch {
-                print(error)
-            }
-        }
     }
 }

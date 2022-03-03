@@ -9,8 +9,7 @@ import Combine
 
 class LocationViewModel {
     @Published var nameText: String
-    @Published var isResidentsCountVisible: Bool
-    @Published var residentsCount: Int
+    @Published var residentsCountText: String
     @Published var iconName: String
     @Published var isIndicatorVisible: Bool
     
@@ -19,12 +18,10 @@ class LocationViewModel {
     init(location: Location) {
         self.location = location
         self.nameText = location.name
-        let resCount = location.residents?.count ?? 0
-        self.isResidentsCountVisible = resCount > 0
-        self.residentsCount = resCount
-        self.iconName = LocationViewModel.getIconName(
-            for: location.type ?? "")
-        self.isIndicatorVisible = resCount > 0
+        let residentsCount = location.residents?.count ?? 0
+        self.residentsCountText = residentsCount > 0 ? String(residentsCount) : ""
+        self.iconName = LocationViewModel.getIconName(for: location.type ?? "")
+        self.isIndicatorVisible = residentsCount > 0
     }
     
     static func getIconName(for locationType: String) -> String {

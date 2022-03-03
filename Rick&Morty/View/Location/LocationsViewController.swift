@@ -58,7 +58,7 @@ extension LocationsViewController: UITableViewDataSource {
 //    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell2", for: indexPath) as! LocationCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell2", for: indexPath) as! LocationTableViewCell
         if let locationViewModel = self.viewModel.locationModels?[indexPath.row] {
             cell.use(locationViewModel)
         }
@@ -78,20 +78,5 @@ extension LocationsViewController: UITableViewDelegate {
 //            .instantiateViewController(withIdentifier: "CharactersViewController") as! CharactersViewController
 //        vc.location = locationViewModel.location
 //        navigationController?.pushViewController(vc, animated: true)
-    }
-}
-
-class LocationCell: UITableViewCell {
-    @IBOutlet weak var iconImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var characterCountLabel: UILabel!
-    
-    func use(_ viewModel: LocationViewModel) {
-        self.nameLabel.text = viewModel.nameText
-        self.characterCountLabel.text = "\(viewModel.residentsCount)"
-        self.characterCountLabel.isHidden = !viewModel.isResidentsCountVisible
-        self.accessoryType = viewModel.isIndicatorVisible ? .disclosureIndicator : .none
-        self.imageView?.image = UIImage.init(systemName: viewModel.iconName)
-        self.imageView?.tintColor = UIColor.init(named: "ContentIcon")
     }
 }

@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1751FE6027C2E94D00BB19A9 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1751FE5F27C2E94D00BB19A9 /* Observable.swift */; };
+		17105C3427D13112005EA4E4 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17105C3327D13112005EA4E4 /* LocationTableViewCell.swift */; };
+		17105C3627D13194005EA4E4 /* CharacterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17105C3527D13194005EA4E4 /* CharacterCollectionViewCell.swift */; };
 		1756655F27CEC174004702AD /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1756655E27CEC174004702AD /* LocationViewModel.swift */; };
 		1756656127CF7192004702AD /* CharacterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1756656027CF7192004702AD /* CharacterViewModel.swift */; };
 		17A24DE627B4698100C35674 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A24DE527B4698100C35674 /* LocationsViewController.swift */; };
@@ -16,7 +17,6 @@
 		17A24DEE27B726D700C35674 /* CharactersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A24DED27B726D700C35674 /* CharactersViewModel.swift */; };
 		17DA997E27AEF49F00922724 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DA997D27AEF49F00922724 /* AppDelegate.swift */; };
 		17DA998027AEF49F00922724 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DA997F27AEF49F00922724 /* SceneDelegate.swift */; };
-		17DA998227AEF49F00922724 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DA998127AEF49F00922724 /* ViewController.swift */; };
 		17DA998527AEF49F00922724 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17DA998327AEF49F00922724 /* Main.storyboard */; };
 		17DA998727AEF4A000922724 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17DA998627AEF4A000922724 /* Assets.xcassets */; };
 		17DA998A27AEF4A000922724 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17DA998827AEF4A000922724 /* LaunchScreen.storyboard */; };
@@ -25,7 +25,6 @@
 		17DA99A127AEF4A000922724 /* Rick_MortyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DA99A027AEF4A000922724 /* Rick_MortyUITestsLaunchTests.swift */; };
 		17DA99AF27AEF76900922724 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DA99AE27AEF76900922724 /* Character.swift */; };
 		17DA99B127AEF7E600922724 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DA99B027AEF7E600922724 /* Location.swift */; };
-		17DA99BA27AF0AFB00922724 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DA99B927AF0AFB00922724 /* Decoder.swift */; };
 		17DA99BC27AFA6C300922724 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DA99BB27AFA6C300922724 /* Episode.swift */; };
 		17DA99BF27B1A60500922724 /* ApiList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DA99BE27B1A60500922724 /* ApiList.swift */; };
 		17DA99C127B2804100922724 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17DA99C027B2804100922724 /* Images.xcassets */; };
@@ -54,7 +53,8 @@
 
 /* Begin PBXFileReference section */
 		09A56AD02D224E6E4A7D4B69 /* Pods-Rick&MortyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rick&MortyTests.debug.xcconfig"; path = "Target Support Files/Pods-Rick&MortyTests/Pods-Rick&MortyTests.debug.xcconfig"; sourceTree = "<group>"; };
-		1751FE5F27C2E94D00BB19A9 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		17105C3327D13112005EA4E4 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
+		17105C3527D13194005EA4E4 /* CharacterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCollectionViewCell.swift; sourceTree = "<group>"; };
 		1756655E27CEC174004702AD /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		1756656027CF7192004702AD /* CharacterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewModel.swift; sourceTree = "<group>"; };
 		17A24DE527B4698100C35674 /* LocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
@@ -64,7 +64,6 @@
 		17DA997A27AEF49F00922724 /* Rick&Morty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rick&Morty.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		17DA997D27AEF49F00922724 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17DA997F27AEF49F00922724 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		17DA998127AEF49F00922724 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		17DA998427AEF49F00922724 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		17DA998627AEF4A000922724 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17DA998927AEF4A000922724 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -76,7 +75,6 @@
 		17DA99A027AEF4A000922724 /* Rick_MortyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rick_MortyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		17DA99AE27AEF76900922724 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		17DA99B027AEF7E600922724 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		17DA99B927AF0AFB00922724 /* Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
 		17DA99BB27AFA6C300922724 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		17DA99BE27B1A60500922724 /* ApiList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiList.swift; sourceTree = "<group>"; };
 		17DA99C027B2804100922724 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -122,6 +120,7 @@
 		17A24DE927B7263B00C35674 /* Location */ = {
 			isa = PBXGroup;
 			children = (
+				17105C3327D13112005EA4E4 /* LocationTableViewCell.swift */,
 				17A24DE527B4698100C35674 /* LocationsViewController.swift */,
 				17A24DEA27B7268700C35674 /* LocationsViewModel.swift */,
 				1756655E27CEC174004702AD /* LocationViewModel.swift */,
@@ -132,6 +131,7 @@
 		17A24DEC27B726B700C35674 /* Character */ = {
 			isa = PBXGroup;
 			children = (
+				17105C3527D13194005EA4E4 /* CharacterCollectionViewCell.swift */,
 				17A24DE727B46A1A00C35674 /* CharactersViewController.swift */,
 				17A24DED27B726D700C35674 /* CharactersViewModel.swift */,
 				1756656027CF7192004702AD /* CharacterViewModel.swift */,
@@ -164,13 +164,10 @@
 		17DA997C27AEF49F00922724 /* Rick&Morty */ = {
 			isa = PBXGroup;
 			children = (
-				17DA99DF27B45CEE00922724 /* ViewModel */,
 				17DA99DE27B45CCC00922724 /* View */,
-				17DA99B827AF0AEA00922724 /* Util */,
 				17DA99AD27AEF74000922724 /* Model */,
 				17DA997D27AEF49F00922724 /* AppDelegate.swift */,
 				17DA997F27AEF49F00922724 /* SceneDelegate.swift */,
-				17DA998127AEF49F00922724 /* ViewController.swift */,
 				17DA998327AEF49F00922724 /* Main.storyboard */,
 				17DA998627AEF4A000922724 /* Assets.xcassets */,
 				17DA998827AEF4A000922724 /* LaunchScreen.storyboard */,
@@ -208,15 +205,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		17DA99B827AF0AEA00922724 /* Util */ = {
-			isa = PBXGroup;
-			children = (
-				17DA99B927AF0AFB00922724 /* Decoder.swift */,
-				1751FE5F27C2E94D00BB19A9 /* Observable.swift */,
-			);
-			path = Util;
-			sourceTree = "<group>";
-		};
 		17DA99DE27B45CCC00922724 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,13 +213,6 @@
 				17DA99E027B45FCE00922724 /* MyTabBarController.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		17DA99DF27B45CEE00922724 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		96978979F2C74BEBE67A6244 /* Frameworks */ = {
@@ -497,18 +478,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17DA998227AEF49F00922724 /* ViewController.swift in Sources */,
 				17A24DE627B4698100C35674 /* LocationsViewController.swift in Sources */,
 				17DA99BF27B1A60500922724 /* ApiList.swift in Sources */,
 				17DA997E27AEF49F00922724 /* AppDelegate.swift in Sources */,
 				17DA99E127B45FCE00922724 /* MyTabBarController.swift in Sources */,
 				17A24DEE27B726D700C35674 /* CharactersViewModel.swift in Sources */,
 				17DA99BC27AFA6C300922724 /* Episode.swift in Sources */,
+				17105C3627D13194005EA4E4 /* CharacterCollectionViewCell.swift in Sources */,
+				17105C3427D13112005EA4E4 /* LocationTableViewCell.swift in Sources */,
 				17DA99B127AEF7E600922724 /* Location.swift in Sources */,
 				17A24DEB27B7268700C35674 /* LocationsViewModel.swift in Sources */,
 				17DA998027AEF49F00922724 /* SceneDelegate.swift in Sources */,
-				1751FE6027C2E94D00BB19A9 /* Observable.swift in Sources */,
-				17DA99BA27AF0AFB00922724 /* Decoder.swift in Sources */,
 				1756656127CF7192004702AD /* CharacterViewModel.swift in Sources */,
 				17DA99AF27AEF76900922724 /* Character.swift in Sources */,
 				1756655F27CEC174004702AD /* LocationViewModel.swift in Sources */,

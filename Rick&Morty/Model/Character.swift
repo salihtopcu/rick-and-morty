@@ -83,17 +83,4 @@ extension Character {
                 }
             }
     }
-    
-    static func find3(_ id: Int) {
-        AF.request("https://rickandmortyapi.com/api/character/\(id)")
-            .responseData { response in
-                guard let data = response.value else { return }
-                do {
-                    let char = try Decoder.decode(from: data, to: Character.self, dateFormat: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-                    debugPrint("Response: \(char)")
-                } catch {
-                    debugPrint(error.localizedDescription)
-                }
-            }
-    }
 }
