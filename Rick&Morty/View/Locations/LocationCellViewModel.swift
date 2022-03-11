@@ -7,24 +7,24 @@
 
 import Combine
 
-class LocationViewModel {
-    @Published var nameText: String
-    @Published var residentsCountText: String
-    @Published var iconName: String
-    @Published var isIndicatorVisible: Bool
+class LocationCellViewModel {
+    var nameText: String = ""
+    var residentsCountText: String = ""
+    var iconName: String = ""
+    var isIndicatorVisible: Bool = false
     
-    var location: Location
+    let location: Location
     
     init(location: Location) {
         self.location = location
         self.nameText = location.name
         let residentsCount = location.residents?.count ?? 0
         self.residentsCountText = residentsCount > 0 ? String(residentsCount) : ""
-        self.iconName = LocationViewModel.getIconName(for: location.type ?? "")
+        self.iconName = LocationCellViewModel.getIconName(for: location.type ?? "")
         self.isIndicatorVisible = residentsCount > 0
     }
     
-    static func getIconName(for locationType: String) -> String {
+    private static func getIconName(for locationType: String) -> String {
         switch locationType {
             case "Planet": return "globe"
             case "Cluster": return "circles.hexagonpath.fill"

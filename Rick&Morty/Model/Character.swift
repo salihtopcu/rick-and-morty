@@ -41,13 +41,14 @@ struct Character: Decodable, Identifiable {
 extension Character {
     
     static func filter(
+        page: Int,
         onSuccess: @escaping (ApiList<Character>) -> Void,
         onFail: @escaping (Error?) -> Void) {
-        AF.request("https://rickandmortyapi.com/api/character")
+            AF.request("https://rickandmortyapi.com/api/character", parameters: ["page": page])
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
             .responseDecodable(of: ApiList<Character>.self) { response in
-                debugPrint("Response: \(response)")
+//                debugPrint("Response: \(response)")
                 switch response.result {
                 case .success:
                     guard let value = response.value else {
@@ -64,10 +65,11 @@ extension Character {
             }
     }
     
-    static func find(_ id: Int) {
+    static func find(_ id: Int, completion: Completion<Character, Error>?) {
         AF.request("https://rickandmortyapi.com/api/character/\(id)")
             .responseDecodable(of: Character.self) { response in
-                debugPrint("Response: \(response)")
+//                debugPrint("Response: \(response)")
+                completion?(response.value, nil)
             }
     }
     

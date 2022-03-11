@@ -8,24 +8,33 @@
 import UIKit
 import Combine
 
-class LocationsViewController: UIViewController {
+class LocationsViewController: RouterViewController<LocationsViewModel, LocationsRouter> {
     
     @IBOutlet weak var locationsTableView: UITableView!
     
-    var viewModel = LocationsViewModel()
     var subscriptions = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // TODO: viewModel and router should be set by router
+        if viewModel == nil {
+            viewModel = LocationsViewModel()
+        }
+        if router == nil {
+            router = LocationsRouter(from: self, viewModel: viewModel)
+        }
+        
         self.locationsTableView.accessibilityContainerType = .dataTable
         
-        viewModel.$locationModels
+        viewModel.$locationViewModels
             .receive(on: DispatchQueue.main)
             .sink { [weak self] items in
                 self?.locationsTableView.reloadData()
             }
             .store(in: &subscriptions)
+        
+        viewModel.start()
     }
     
 
@@ -43,7 +52,7 @@ class LocationsViewController: UIViewController {
 
 extension LocationsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.locationModels?.count ?? 0
+        return self.viewModel.locationViewModels?.count ?? 0
     }
     
 //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -58,8 +67,8 @@ extension LocationsViewController: UITableViewDataSource {
 //    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell2", for: indexPath) as! LocationTableViewCell
-        if let locationViewModel = self.viewModel.locationModels?[indexPath.row] {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell2", for: indexPath) as! LocationCell
+        if let locationViewModel = self.viewModel.locationViewModels?[indexPath.row] {
             cell.use(locationViewModel)
         }
         return cell
@@ -72,8 +81,12 @@ extension LocationsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let locationViewModel = viewModel.locationModels![indexPath.row]
+        let locationViewModel = viewModel.locationViewModels![indexPath.row]
+        tableView.deselectRow(at: indexPath, animated: true)
         debugPrint("SELECTED:", locationViewModel.location.name)
+        if let id = locationViewModel.location.id {
+            router?.routeForCharacterSelection(id: id)            
+        }
 //        let vc = UIStoryboard(name: "Main", bundle: nil)
 //            .instantiateViewController(withIdentifier: "CharactersViewController") as! CharactersViewController
 //        vc.location = locationViewModel.location

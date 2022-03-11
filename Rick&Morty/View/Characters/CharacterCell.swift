@@ -7,13 +7,13 @@
 
 import UIKit
 
-class CharacterCollectionViewCell: UICollectionViewCell {
+class CharacterCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     
-    func use(_ viewModel: CharacterViewModel) {
+    func use(_ viewModel: CharacterCellViewModel) {
         self.nameLabel.text = viewModel.nameText
-        if let url = URL(string: viewModel.imageUrl) {
+        if let urlString = viewModel.imageUrl, let url = URL(string: urlString) {
             do {
                 self.imageView.image = try UIImage(data: Data(contentsOf: url))
             } catch {

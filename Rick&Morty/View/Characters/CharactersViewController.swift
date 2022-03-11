@@ -8,11 +8,16 @@
 import UIKit
 import Combine
 
-class CharactersViewController: UIViewController {
+
+
+class CharactersViewController: RouterViewController<CharactersViewModel, CharactersRouter> {
+    
+    enum Route: String {
+        case Character
+    }
 
     @IBOutlet weak var charactersCollectionView: UICollectionView!
     
-    var viewModel = CharactersViewModel()
     var subscriptions = Set<AnyCancellable>()
     
     var location: Location? {
@@ -24,17 +29,16 @@ class CharactersViewController: UIViewController {
         }
     }
     
-//    init(location: Location) {
-//        super.init(nibName: nil, bundle: nil)
-//        self.location = location
-//    }
-//    
-//    required init?(coder: NSCoder) {
-//        super.init(coder: coder)
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // TODO: viewModel and router should be set by router
+        if viewModel == nil {
+            viewModel = CharactersViewModel()
+        }
+        if router == nil {
+            router = CharactersRouter(from: self, viewModel: viewModel)
+        }
 
         self.charactersCollectionView.delegate = self
         self.charactersCollectionView.dataSource = self
@@ -45,11 +49,20 @@ class CharactersViewController: UIViewController {
                 self?.charactersCollectionView.reloadData()
             }
             .store(in: &subscriptions)
+        
+        viewModel.start()
     }
 }
 
 extension CharactersViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let characterId = viewModel.characterModels?[indexPath.row].characterId {
+            let vc = UIStoryboard(name: "Main", bundle: nil)
+                .instantiateViewController(withIdentifier: "CharacterViewController") as! CharacterViewController
+            vc.viewModel = CharacterViewModel(characterId: characterId)
+            showDetailViewController(vc, sender: self)
+        }
+    }
 }
 
 extension CharactersViewController: UICollectionViewDataSource {
@@ -58,7 +71,7 @@ extension CharactersViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CharacterCell", for: indexPath) as! CharacterCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CharacterCell", for: indexPath) as! CharacterCell
         if let characterViewModel = viewModel.characterModels?[indexPath.row] {
             cell.use(characterViewModel)
         }
