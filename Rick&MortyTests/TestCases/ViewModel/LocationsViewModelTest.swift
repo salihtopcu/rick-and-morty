@@ -21,8 +21,6 @@ class LocationsViewModelTest: XCTestCase {
     func initialState() {
         let vm = LocationsViewModel()
         XCTAssertFalse(vm.isLoading)
-        XCTAssertNil(vm.locations)
-        XCTAssertNil(vm.currentPage)
-        XCTAssertNil(vm.nextPageNumber)
+        XCTAssertNil(vm.locationViewModels)
     }
 }
