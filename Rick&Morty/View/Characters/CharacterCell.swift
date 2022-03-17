@@ -13,7 +13,7 @@ class CharacterCell: UICollectionViewCell {
     
     func use(_ viewModel: CharacterCellViewModel) {
         self.nameLabel.text = viewModel.nameText
-        if let urlString = viewModel.imageUrl, let url = URL(string: urlString) {
+        if let url = viewModel.imageUrl {
             do {
                 self.imageView.image = try UIImage(data: Data(contentsOf: url))
             } catch {

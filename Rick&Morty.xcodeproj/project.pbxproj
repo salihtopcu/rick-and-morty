@@ -12,7 +12,8 @@
 		1718F6FF27D968F1003CA031 /* LocationsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718F6FE27D968F1003CA031 /* LocationsRouter.swift */; };
 		1718F71F27DABB49003CA031 /* LocationsViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718F71E27DABB49003CA031 /* LocationsViewModelTest.swift */; };
 		1718F72227DBAE92003CA031 /* LocationCellViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718F72127DBAE92003CA031 /* LocationCellViewModelTest.swift */; };
-		1718F72527DBAED3003CA031 /* LocationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718F72427DBAED3003CA031 /* LocationTest.swift */; };
+		1718F72A27DC05A6003CA031 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718F72927DC05A6003CA031 /* Service.swift */; };
+		1718F73227DFD4FF003CA031 /* CharactersViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718F73127DFD4FF003CA031 /* CharactersViewModelTest.swift */; };
 		171C6D8C27D4DBC500173B02 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171C6D8B27D4DBC500173B02 /* Extension.swift */; };
 		171C6D8E27D5391300173B02 /* CharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171C6D8D27D5391300173B02 /* CharacterViewController.swift */; };
 		171C6D9027D55A2900173B02 /* Generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171C6D8F27D55A2900173B02 /* Generic.swift */; };
@@ -57,7 +58,8 @@
 		1718F71127DAA1DA003CA031 /* Rick&MortyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Rick&MortyTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1718F71E27DABB49003CA031 /* LocationsViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewModelTest.swift; sourceTree = "<group>"; };
 		1718F72127DBAE92003CA031 /* LocationCellViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCellViewModelTest.swift; sourceTree = "<group>"; };
-		1718F72427DBAED3003CA031 /* LocationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTest.swift; sourceTree = "<group>"; };
+		1718F72927DC05A6003CA031 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		1718F73127DFD4FF003CA031 /* CharactersViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewModelTest.swift; sourceTree = "<group>"; };
 		171C6D8B27D4DBC500173B02 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		171C6D8D27D5391300173B02 /* CharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewController.swift; sourceTree = "<group>"; };
 		171C6D8F27D55A2900173B02 /* Generic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Generic.swift; sourceTree = "<group>"; };
@@ -125,7 +127,6 @@
 		1718F71B27DAA249003CA031 /* TestCases */ = {
 			isa = PBXGroup;
 			children = (
-				1718F72327DBAEC0003CA031 /* Model */,
 				1718F72027DBAE2F003CA031 /* ViewModel */,
 			);
 			path = TestCases;
@@ -150,21 +151,15 @@
 			children = (
 				1718F71E27DABB49003CA031 /* LocationsViewModelTest.swift */,
 				1718F72127DBAE92003CA031 /* LocationCellViewModelTest.swift */,
+				1718F73127DFD4FF003CA031 /* CharactersViewModelTest.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		1718F72327DBAEC0003CA031 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				1718F72427DBAED3003CA031 /* LocationTest.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		1718F72627DBC313003CA031 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				1718F72927DC05A6003CA031 /* Service.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -441,8 +436,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1718F73227DFD4FF003CA031 /* CharactersViewModelTest.swift in Sources */,
 				1718F71F27DABB49003CA031 /* LocationsViewModelTest.swift in Sources */,
-				1718F72527DBAED3003CA031 /* LocationTest.swift in Sources */,
 				1718F72227DBAE92003CA031 /* LocationCellViewModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -452,6 +447,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				17A24DE627B4698100C35674 /* LocationsViewController.swift in Sources */,
+				1718F72A27DC05A6003CA031 /* Service.swift in Sources */,
 				1718F6FF27D968F1003CA031 /* LocationsRouter.swift in Sources */,
 				171C6D9827D78F4800173B02 /* CharacterViewModel.swift in Sources */,
 				17DA99BF27B1A60500922724 /* ApiList.swift in Sources */,

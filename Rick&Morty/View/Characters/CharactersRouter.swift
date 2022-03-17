@@ -7,11 +7,6 @@
 
 import UIKit
 
-//enum CharactersRoute: Route {
-//    case Character(id: Int)
-//    case Character(item: Character)
-//}
-
 class CharactersRouter: Router<CharactersViewModel> {
     
     func routeForCharacterSelection(id: Int) {

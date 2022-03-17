@@ -59,7 +59,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="locationsTableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vFe-cI-k7n">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="8" indentationWidth="1" reuseIdentifier="LocationCell1" textLabel="x0c-d8-q5f" detailTextLabel="mJu-Dc-ZvW" imageView="g7q-tR-avI" rowHeight="60" style="IBUITableViewCellStyleValue1" id="TFg-9A-GWs">
@@ -153,6 +153,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Locations" image="location.square.fill" catalog="system" id="v1m-Fl-N6A"/>
                     <navigationItem key="navigationItem" id="aa9-bl-llp"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="locationsTableView" destination="vFe-cI-k7n" id="Lhn-Wb-hGR"/>
                     </connections>

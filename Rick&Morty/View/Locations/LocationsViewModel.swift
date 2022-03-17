@@ -11,23 +11,13 @@ import Foundation
 class LocationsViewModel: RoutableViewModel {
     @Published var isLoading: Bool = false
     @Published var locationViewModels: [LocationCellViewModel]?
-    var nextPageNumber: Int?
     
-    private var _currentPage: Int?
-    var currentPage: Int? {
-        get {
-            return self._currentPage
-        }
-        set {
-            self._currentPage = newValue
-            self.loadLocations()
-        }
-    }
-    
+    private var nextPageNumber: Int? = 1
+    private var currentPageNumber: Int?
     private var listInfo: ApiListInfo? {
         didSet {
             if let next = listInfo?.next {
-                if let val = URL(string: next)?.queryParameters?["page"] {
+                if let val = next.queryParameters?["page"] {
                     nextPageNumber = Int(val)
                     return
                 }
@@ -35,25 +25,30 @@ class LocationsViewModel: RoutableViewModel {
             nextPageNumber = nil
         }
     }
-    var locations: [Location]? {
-        didSet {
-            locationViewModels = locations?.map({ return LocationCellViewModel(location: $0) }) ?? []
-        }
-    }
+    private var locations: [Location]?
     
     func start() {
-        self.currentPage = 1
+        loadNextPage()
     }
     
-    private func loadLocations() {
+    func loadNextPage(service: Service = RMService.shared) {
+        guard let next = nextPageNumber else { return }
         self.isLoading = true
-        Location.filter(onSuccess: { [weak self] result in
+        service.filterLocations(page: next) { [weak self] result, error in
             self?.isLoading = false
-            self?.listInfo = result.info
-            self?.locations = result.results
-        }, onFail: { error in
-            self.isLoading = false
-            print(error ?? "error")
-        })
+            if result != nil {
+                self?.currentPageNumber = next
+                self?.listInfo = result!.info
+                if self?.locations == nil {
+                    self?.locations = result!.results
+                    self?.locationViewModels = result!.results.map({ return LocationCellViewModel(location: $0) })
+                } else {
+                    self?.locations! += result!.results
+                    self?.locationViewModels! += result!.results.map({ return LocationCellViewModel(location: $0) })
+                }
+            } else if error != nil {
+                print(error ?? "error")
+            }
+        }
     }
 }

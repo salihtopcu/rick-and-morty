@@ -6,11 +6,12 @@
 //
 
 import Combine
+import Foundation
 
 class CharacterViewModel: RoutableViewModel {
     @Published var isLoading: Bool = false
     @Published var nameText: String = ""
-    @Published var imageUrl: String?
+    @Published var imageUrl: URL?
     
     let characterId: Int
     
@@ -34,8 +35,18 @@ class CharacterViewModel: RoutableViewModel {
     
     func start() {
         if character == nil {
-            Character.find(characterId) { [weak self] result, error in
-                self?.character = result
+            loadCharacter()
+        }
+    }
+    
+    func loadCharacter(service: Service = RMService.shared) {
+        self.isLoading = true
+        service.findCharacter(id: characterId) { [weak self] item, error in
+            self?.isLoading = false
+            if item != nil {
+                self?.character = item
+            } else if error != nil {
+                print(error ?? "error")
             }
         }
     }

@@ -6,11 +6,12 @@
 //
 
 import Combine
+import Foundation
 
 class CharacterCellViewModel {
     let characterId: Int
-    @Published var nameText: String?
-    @Published var imageUrl: String?
+    var nameText: String?
+    var imageUrl: URL?
     
     var character: Character?
     

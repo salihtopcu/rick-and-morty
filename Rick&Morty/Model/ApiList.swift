@@ -10,8 +10,8 @@ import Foundation
 struct ApiListInfo: Decodable {
     let count: Int
     let pages: Int
-    let next: String?
-    let prev: String?
+    let next: URL?
+    let prev: URL?
 }
 
 struct ApiList<T: Decodable>: Decodable {

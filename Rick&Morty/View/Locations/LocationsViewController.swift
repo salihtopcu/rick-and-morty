@@ -5,8 +5,8 @@
 //  Created by Salih Topcu on 10.02.2022.
 //
 
-import UIKit
 import Combine
+import UIKit
 
 class LocationsViewController: RouterViewController<LocationsViewModel, LocationsRouter> {
     
@@ -91,5 +91,11 @@ extension LocationsViewController: UITableViewDelegate {
 //            .instantiateViewController(withIdentifier: "CharactersViewController") as! CharactersViewController
 //        vc.location = locationViewModel.location
 //        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row + 1 == self.viewModel.locationViewModels!.count {
+            viewModel.loadNextPage()
+        }
     }
 }
