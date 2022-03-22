@@ -48,9 +48,7 @@
             "name": "Abadango",
             "type": "Cluster",
             "dimension": "unknown",
-            "residents": [
-                "https://rickandmortyapi.com/api/character/6"
-            ],
+            "residents": [],
             "url": "https://rickandmortyapi.com/api/location/2",
             "created": "2017-11-10T13:06:38.182Z"
         },
@@ -168,7 +166,7 @@
         {
             "id": 4,
             "name": "Worldender's lair",
-            "type": "Planet",
+            "type": "Microverse",
             "dimension": "unknown",
             "residents": [
                 "https://rickandmortyapi.com/api/character/10",
@@ -187,7 +185,7 @@
         {
             "id": 5,
             "name": "Anatomy Park",
-            "type": "Microverse",
+            "type": "TV",
             "dimension": "Dimension C-137",
             "residents": [
                 "https://rickandmortyapi.com/api/character/12",
@@ -208,7 +206,7 @@
         {
             "id": 6,
             "name": "Interdimensional Cable",
-            "type": "TV",
+            "type": "Resort",
             "dimension": "unknown",
             "residents": [
                 "https://rickandmortyapi.com/api/character/20",
@@ -280,7 +278,7 @@
         {
             "id": 7,
             "name": "Immortality Field Resort",
-            "type": "Resort",
+            "type": "Fantasy town",
             "dimension": "unknown",
             "residents": [
                 "https://rickandmortyapi.com/api/character/23",
@@ -293,7 +291,7 @@
         {
             "id": 8,
             "name": "Post-Apocalyptic Earth",
-            "type": "Planet",
+            "type": "Dream",
             "dimension": "Post-Apocalyptic Dimension",
             "residents": [
                 "https://rickandmortyapi.com/api/character/25",
@@ -313,7 +311,7 @@
         {
             "id": 9,
             "name": "Purge Planet",
-            "type": "Planet",
+            "type": "Dimension",
             "dimension": "Replacement Dimension",
             "residents": [
                 "https://rickandmortyapi.com/api/character/26",
@@ -327,7 +325,7 @@
         {
             "id": 10,
             "name": "Venzenulon 7",
-            "type": "Planet",
+            "type": "Other",
             "dimension": "unknown",
             "residents": [
                 "https://rickandmortyapi.com/api/character/33"

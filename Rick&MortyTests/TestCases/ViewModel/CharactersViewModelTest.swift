@@ -10,12 +10,8 @@ import XCTest
 
 class CharactersViewModelTest: XCTestCase {
     
-    struct DummyService: Service {
-        func filterLocations(page: Int, completion: Completion<ApiList<Location>, Error>?) {}
-        
-        func findLocation(id: Int, completion: Completion<Location, Error>?) {}
-        
-        func filterCharacters(page: Int, completion: Completion<ApiList<Character>, Error>?) {
+    struct DummyApi: CharacterApi {
+        func filter(page: Int, completion: Completion<ApiList<Character>, Error>?) {
             delay(bySeconds: 1, dispatchLevel: .background) {
                 completion?(ApiList(
                     info: ApiListInfo(
@@ -27,7 +23,7 @@ class CharactersViewModelTest: XCTestCase {
             }
         }
         
-        func findCharacter(id: Int, completion: Completion<Character, Error>?) {
+        func find(id: Int, completion: Completion<Character, Error>?) {
             delay(bySeconds: 1, dispatchLevel: .background) {
                 completion?(Character(
                     id: 0,
@@ -41,15 +37,10 @@ class CharactersViewModelTest: XCTestCase {
                     imageUrl: nil,
                     episodeUrls: [],
                     url: URL(string: "https://www.google.com")!,
-                    created: ""),
+                    created: Date()),
                             nil)
             }
         }
-        
-        func filterEpisodes(page: Int, completion: Completion<ApiList<Episode>, Error>?) {}
-        
-        func findEpisode(id: Int, completion: Completion<Episode, Error>?) {}
-        
     }
 
     override func setUpWithError() throws {
@@ -68,7 +59,7 @@ class CharactersViewModelTest: XCTestCase {
     
     func test_loadNextPage() {
         let vm = CharactersViewModel()
-        vm.loadNextPage(service: DummyService())
+        vm.loadNextPage(api: DummyApi())
         XCTAssertTrue(vm.isLoading)
     }
 

@@ -9,107 +9,59 @@ import XCTest
 @testable import Rick_Morty
 
 class LocationCellViewModelTest: XCTestCase {
+    
+    var vm1: LocationCellViewModel!
+    var vm2: LocationCellViewModel!
+    var vms: [LocationCellViewModel]!
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        let formatter = Foundation.DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .formatted(formatter)
+        
+        let location1Data = loadStub(name: "location_1", extension: "json")
+        let location1 = try decoder.decode(Location.self, from: location1Data)
+        vm1 = LocationCellViewModel(location: location1)
+        
+        let location2Data = loadStub(name: "location_2", extension: "json")
+        let location2 = try decoder.decode(Location.self, from: location2Data)
+        vm2 = LocationCellViewModel(location: location2)
+        
+        let locationListData = loadStub(name: "locations_page1", extension: "json")
+        let locationList = try decoder.decode(ApiList<Location>.self, from: locationListData)
+        vms = locationList.results.map({ return LocationCellViewModel(location: $0) })
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func test_initialState() {
-        let location = Location(
-            id: 1,
-            name: "Name",
-            type: .planet,
-            dimension: "Dimension",
-            residents: [URL(string: "https://www.google.com")!],
-            urlString: "URL",
-            created: "CreatedDate")
-        let vm = LocationCellViewModel(location: location)
-        XCTAssertEqual(vm.nameText, location.name)
-        XCTAssertEqual(vm.residentsCountText, "\(location.residents!.count)")
-        XCTAssertEqual(vm.iconName, "globe")
-        XCTAssertTrue(vm.isIndicatorVisible)
+    
+    func test_nameText() {
+        XCTAssertEqual(vm1.nameText, vm1.location.name)
+    }
+    
+    func test_residentsCountText() {
+        XCTAssertEqual(vm1.residentsCountText, "\(vm1.location.residents!.count)")
+        XCTAssertEqual(vm2.residentsCountText, "")
     }
     
     func test_iconNames() {
-        let vmPlanet = LocationCellViewModel(
-            location: Location(
-                id: nil,
-                name: "",
-                type: .planet,
-                dimension: nil,
-                residents: nil,
-                urlString: "",
-                created: nil))
-        XCTAssertEqual(vmPlanet.iconName, "globe")
-        
-        let vmCluster = LocationCellViewModel(
-            location: Location(
-                id: nil,
-                name: "",
-                type: .cluster,
-                dimension: nil,
-                residents: nil,
-                urlString: "",
-                created: nil))
-        XCTAssertEqual(vmCluster.iconName, "circles.hexagonpath.fill")
-        
-        let vmSpaceStation = LocationCellViewModel(
-            location: Location(
-                id: nil,
-                name: "",
-                type: .spaceStation,
-                dimension: nil,
-                residents: nil,
-                urlString: "",
-                created: nil))
-        XCTAssertEqual(vmSpaceStation.iconName, "logo.xbox")
-        
-        let vmMicroverse = LocationCellViewModel(
-            location: Location(
-                id: nil,
-                name: "",
-                type: .microverse,
-                dimension: nil,
-                residents: nil,
-                urlString: "",
-                created: nil))
-        XCTAssertEqual(vmMicroverse.iconName, "homepodmini.fill")
-        
-        let vmTv = LocationCellViewModel(
-            location: Location(
-                id: nil,
-                name: "",
-                type: .tv,
-                dimension: nil,
-                residents: nil,
-                urlString: "",
-                created: nil))
-        XCTAssertEqual(vmTv.iconName, "sparkles.tv.fill")
-        
-        let vmResort = LocationCellViewModel(
-            location: Location(
-                id: nil,
-                name: "",
-                type: .resort,
-                dimension: nil,
-                residents: nil,
-                urlString: "",
-                created: nil))
-        XCTAssertEqual(vmResort.iconName, "sleep.circle.fill")
-        
-        let vmOther = LocationCellViewModel(
-            location: Location(
-                id: nil,
-                name: "",
-                type: .unknown,
-                dimension: nil,
-                residents: nil,
-                urlString: "",
-                created: nil))
-        XCTAssertEqual(vmOther.iconName, "questionmark")
+        for item in vms {
+            switch item.location.type {
+            case .planet: XCTAssertEqual(item.iconName, "globe"); break
+            case .cluster: XCTAssertEqual(item.iconName, "circles.hexagonpath.fill"); break
+            case .spaceStation: XCTAssertEqual(item.iconName, "logo.xbox"); break
+            case .microverse: XCTAssertEqual(item.iconName, "homepodmini.fill"); break
+            case .tv: XCTAssertEqual(item.iconName, "sparkles.tv.fill"); break
+            case .resort: XCTAssertEqual(item.iconName, "sleep.circle.fill"); break
+            default:  XCTAssertEqual(item.iconName, "questionmark")
+            }
+        }
+    }
+    
+    func test_indicatorVisibality() {
+        XCTAssertTrue(vm1.isIndicatorVisible)
+        XCTAssertFalse(vm2.isIndicatorVisible)
     }
 }

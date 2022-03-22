@@ -23,4 +23,5 @@ class LocationsViewModelTest: XCTestCase {
         XCTAssertFalse(vm.isLoading)
         XCTAssertNil(vm.locationViewModels)
     }
+    
 }
