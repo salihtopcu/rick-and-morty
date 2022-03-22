@@ -6,23 +6,29 @@
 //
 
 import Foundation
+import Alamofire
 
-protocol Service {
+protocol LocationApi {
     
-    func filterLocations(page: Int, completion: Completion<ApiList<Location>, Error>?)
+    func filter(page: Int, completion: Completion<ApiList<Location>, Error>?)
     
-    func findLocation(id: Int, completion: Completion<Location, Error>?)
-    
-    func filterCharacters(page: Int, completion: Completion<ApiList<Character>, Error>?)
-    
-    func findCharacter(id: Int, completion: Completion<Character, Error>?)
-    
-    func filterEpisodes(page: Int, completion: Completion<ApiList<Episode>, Error>?)
-    
-    func findEpisode(id: Int, completion: Completion<Episode, Error>?)
+    func find(id: Int, completion: Completion<Location, Error>?)
 }
 
-import Alamofire
+protocol CharacterApi {
+    
+    func filter(page: Int, completion: Completion<ApiList<Character>, Error>?)
+    
+    func find(id: Int, completion: Completion<Character, Error>?)
+}
+
+
+protocol EpisodeApi {
+    
+    func filter(page: Int, completion: Completion<ApiList<Episode>, Error>?)
+    
+    func find(id: Int, completion: Completion<Episode, Error>?)
+}
 
 extension DataRequest {
     
@@ -30,13 +36,21 @@ extension DataRequest {
         case unknownResult
     }
     
+    static var decoder: JSONDecoder = {
+        let formatter = Foundation.DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .formatted(formatter)
+        return decoder
+    }()
+    
     @discardableResult
     fileprivate func run<T: Decodable>(
         of type: T.Type = T.self,
         completion: Completion<T, Error>?) -> Self {
             return validate(statusCode: 200..<300)
                 .validate(contentType: ["application/json"])
-                .responseDecodable(of: T.self) { response in
+                .responseDecodable(of: T.self, decoder: DataRequest.decoder) { response in
                     switch response.result {
                     case .success:
                         guard let value: T = response.value else {
@@ -54,38 +68,51 @@ extension DataRequest {
         }
 }
 
-struct RMService: Service {
-    private let urlRoot = "https://rickandmortyapi.com/api/"
+struct RMService {
+    static let urlRoot = "https://rickandmortyapi.com/api/"
     
-    static var shared = RMService()
+    static var shared = RMService(
+        locations: RMLocationApi(),
+        characters: RMCharacterApi(),
+        episodes: RMEpisodeApi())
     
-    func filterLocations(page: Int, completion: Completion<ApiList<Location>, Error>?) {
-        AF.request("\(urlRoot)location", parameters: ["page": page])
-            .run(of: ApiList<Location>.self, completion: completion)
+    let locations: RMLocationApi
+    let characters: RMCharacterApi
+    let episodes: RMEpisodeApi
+    
+    struct RMLocationApi: LocationApi {
+        func filter(page: Int, completion: Completion<ApiList<Location>, Error>?) {
+            AF.request("\(urlRoot)location", parameters: ["page": page])
+                .run(of: ApiList<Location>.self, completion: completion)
+        }
+        
+        func find(id: Int, completion: Completion<Location, Error>?) {
+            AF.request("\(urlRoot)location/\(id)")
+                .run(of: Location.self, completion: completion)
+        }
     }
     
-    func findLocation(id: Int, completion: Completion<Location, Error>?) {
-        AF.request("\(urlRoot)location/\(id)")
-            .run(of: Location.self, completion: completion)
+    struct RMCharacterApi: CharacterApi {
+        func filter(page: Int, completion: Completion<ApiList<Character>, Error>?) {
+            AF.request("\(urlRoot)character", parameters: ["page": page])
+                .run(of: ApiList<Character>.self, completion: completion)
+        }
+        
+        func find(id: Int, completion: Completion<Character, Error>?) {
+            AF.request("\(urlRoot)character/\(id)")
+                .run(of: Character.self, completion: completion)
+        }
     }
     
-    func filterCharacters(page: Int, completion: Completion<ApiList<Character>, Error>?) {
-        AF.request("\(urlRoot)character", parameters: ["page": page])
-            .run(of: ApiList<Character>.self, completion: completion)
-    }
-    
-    func findCharacter(id: Int, completion: Completion<Character, Error>?) {
-        AF.request("\(urlRoot)character/\(id)")
-            .run(of: Character.self, completion: completion)
-    }
-    
-    func filterEpisodes(page: Int, completion: Completion<ApiList<Episode>, Error>?) {
-        AF.request("\(urlRoot)episode", parameters: ["page": page])
-            .run(of: ApiList<Episode>.self, completion: completion)
-    }
-    
-    func findEpisode(id: Int, completion: Completion<Episode, Error>?) {
-        AF.request("\(urlRoot)episode/\(id)")
-            .run(of: Episode.self, completion: completion)
+    struct RMEpisodeApi: EpisodeApi {
+        func filter(page: Int, completion: Completion<ApiList<Episode>, Error>?) {
+            AF.request("\(urlRoot)episode", parameters: ["page": page])
+                .run(of: ApiList<Episode>.self, completion: completion)
+        }
+        
+        func find(id: Int, completion: Completion<Episode, Error>?) {
+            AF.request("\(urlRoot)episode/\(id)")
+                .run(of: Episode.self, completion: completion)
+        }
     }
 }

@@ -39,9 +39,9 @@ class CharacterViewModel: RoutableViewModel {
         }
     }
     
-    func loadCharacter(service: Service = RMService.shared) {
+    func loadCharacter(api: CharacterApi = RMService.shared.characters) {
         self.isLoading = true
-        service.findCharacter(id: characterId) { [weak self] item, error in
+        api.find(id: characterId) { [weak self] item, error in
             self?.isLoading = false
             if item != nil {
                 self?.character = item

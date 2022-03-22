@@ -41,7 +41,7 @@ struct Character: Decodable, Identifiable {
     let imageUrl: URL?
     let episodeUrls: [URL]
     let url: URL
-    let created: String
+    let created: Date
     
     enum CodingKeys: String, CodingKey {
         case id, name, status, species, type, gender, origin, location, url, created

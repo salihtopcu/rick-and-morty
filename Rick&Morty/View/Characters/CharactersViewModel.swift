@@ -30,10 +30,10 @@ class CharactersViewModel: RoutableViewModel {
         loadNextPage()
     }
     
-    func loadNextPage(service: Service = RMService.shared) {
+    func loadNextPage(api: CharacterApi = RMService.shared.characters) {
         guard let next = nextPageNumber else { return }
         self.isLoading = true
-        service.filterCharacters(page: next) { [weak self] result, error in
+        api.filter(page: next) { [weak self] result, error in
             self?.isLoading = false
             if result != nil {
                 self?.currentPageNumber = next

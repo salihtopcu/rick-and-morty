@@ -43,7 +43,7 @@ struct Location: Codable {
     let dimension: String?
     let residents: [URL]?
     let urlString: String
-    let created: String?
+    let created: Date?
     
     lazy var url: URL? = {
         if let result = URL(string: self.urlString) {
