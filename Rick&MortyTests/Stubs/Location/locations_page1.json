@@ -1,7 +1,7 @@
 {
     "info": {
-        "count": 126,
-        "pages": 7,
+        "count": 39,
+        "pages": 2,
         "next": "https://rickandmortyapi.com/api/location?page=2",
         "prev": null
     },

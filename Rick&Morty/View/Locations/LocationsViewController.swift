@@ -19,7 +19,7 @@ class LocationsViewController: RouterViewController<LocationsViewModel, Location
         
         // TODO: viewModel and router should be set by router
         if viewModel == nil {
-            viewModel = LocationsViewModel()
+            viewModel = LocationsViewModel(api: Service.shared.locations)
         }
         if router == nil {
             router = LocationsRouter(from: self, viewModel: viewModel)

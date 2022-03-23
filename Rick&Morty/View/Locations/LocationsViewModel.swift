@@ -12,6 +12,7 @@ class LocationsViewModel: RoutableViewModel {
     @Published var isLoading: Bool = false
     @Published var locationViewModels: [LocationCellViewModel]?
     
+    private let api: LocationApi
     private var nextPageNumber: Int? = 1
     private var currentPageNumber: Int?
     private var listInfo: ApiListInfo? {
@@ -27,11 +28,15 @@ class LocationsViewModel: RoutableViewModel {
     }
     private var locations: [Location]?
     
+    init(api: LocationApi) {
+        self.api = api
+    }
+    
     func start() {
         loadNextPage()
     }
     
-    func loadNextPage(api: LocationApi = Service.shared.locations) {
+    func loadNextPage() {
         guard let next = nextPageNumber else { return }
         self.isLoading = true
         api.filter(page: next) { [weak self] result, error in

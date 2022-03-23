@@ -23,9 +23,7 @@ class CharactersViewModelTest: XCTestCase {
         }
         
         func filter(page: Int, completion: Completion<ApiList<Character>, Error>?) {
-            print("FILTER RUN")
             delay(bySeconds: 1, dispatchLevel: .background) {
-                print("FILTER RESULT")
                 if page == 1 {
                     completion!(list1, nil)
                 } else if page == 2 {
@@ -85,5 +83,9 @@ class CharactersViewModelTest: XCTestCase {
         } else {
             XCTFail("FAIL: test_loadNextPage")
         }
+        
+        print("test_loadNextPage")
+        vm.loadNextPage()
+        XCTAssertFalse(vm.isLoading)
     }
 }

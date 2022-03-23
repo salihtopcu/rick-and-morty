@@ -1,8 +1,8 @@
 {
     "info": {
-        "count": 126,
-        "pages": 7,
-        "next": "https://rickandmortyapi.com/api/location?page=3",
+        "count": 39,
+        "pages": 2,
+        "next": null,
         "prev": "https://rickandmortyapi.com/api/location?page=1"
     },
     "results": [
@@ -249,19 +249,6 @@
             ],
             "url": "https://rickandmortyapi.com/api/location/39",
             "created": "2017-12-29T12:02:33.513Z"
-        },
-        {
-            "id": 40,
-            "name": "Gazorpazorp",
-            "type": "Planet",
-            "dimension": "unknown",
-            "residents": [
-                "https://rickandmortyapi.com/api/character/168",
-                "https://rickandmortyapi.com/api/character/211",
-                "https://rickandmortyapi.com/api/character/376"
-            ],
-            "url": "https://rickandmortyapi.com/api/location/40",
-            "created": "2017-12-29T12:31:50.313Z"
         }
     ]
 }
