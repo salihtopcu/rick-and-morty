@@ -31,7 +31,7 @@ class LocationsViewModel: RoutableViewModel {
         loadNextPage()
     }
     
-    func loadNextPage(api: LocationApi = RMService.shared.locations) {
+    func loadNextPage(api: LocationApi = Service.shared.locations) {
         guard let next = nextPageNumber else { return }
         self.isLoading = true
         api.filter(page: next) { [weak self] result, error in

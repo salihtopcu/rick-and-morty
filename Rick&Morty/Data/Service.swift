@@ -68,10 +68,10 @@ extension DataRequest {
         }
 }
 
-struct RMService {
+struct Service {
     static let urlRoot = "https://rickandmortyapi.com/api/"
     
-    static var shared = RMService(
+    static var shared = Service(
         locations: RMLocationApi(),
         characters: RMCharacterApi(),
         episodes: RMEpisodeApi())

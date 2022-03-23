@@ -11,6 +11,7 @@ class CharactersViewModel: RoutableViewModel {
     @Published var isLoading: Bool = false
     @Published var characterViewModels: [CharacterCellViewModel]?
     
+    private let api: CharacterApi
     private var nextPageNumber: Int? = 1
     private var currentPageNumber: Int?
     private var listInfo: ApiListInfo? {
@@ -26,11 +27,15 @@ class CharactersViewModel: RoutableViewModel {
     }
     private var characters: [Character]?
     
+    init(api: CharacterApi) {
+        self.api = api
+    }
+    
     func start() {
         loadNextPage()
     }
     
-    func loadNextPage(api: CharacterApi = RMService.shared.characters) {
+    func loadNextPage() {
         guard let next = nextPageNumber else { return }
         self.isLoading = true
         api.filter(page: next) { [weak self] result, error in

@@ -9,10 +9,9 @@ import XCTest
 @testable import Rick_Morty
 
 class LocationCellViewModelTest: XCTestCase {
-    
     var vm1: LocationCellViewModel!
     var vm2: LocationCellViewModel!
-    var vms: [LocationCellViewModel]!
+    var vmList: [LocationCellViewModel]!
 
     override func setUpWithError() throws {
         let formatter = Foundation.DateFormatter()
@@ -30,7 +29,7 @@ class LocationCellViewModelTest: XCTestCase {
         
         let locationListData = loadStub(name: "locations_page1", extension: "json")
         let locationList = try decoder.decode(ApiList<Location>.self, from: locationListData)
-        vms = locationList.results.map({ return LocationCellViewModel(location: $0) })
+        vmList = locationList.results.map({ return LocationCellViewModel(location: $0) })
     }
 
     override func tearDownWithError() throws {
@@ -47,7 +46,7 @@ class LocationCellViewModelTest: XCTestCase {
     }
     
     func test_iconNames() {
-        for item in vms {
+        for item in vmList {
             switch item.location.type {
             case .planet: XCTAssertEqual(item.iconName, "globe"); break
             case .cluster: XCTAssertEqual(item.iconName, "circles.hexagonpath.fill"); break

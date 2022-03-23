@@ -23,7 +23,7 @@ class CharactersViewController: RouterViewController<CharactersViewModel, Charac
         
         // TODO: viewModel and router should be set by router
         if viewModel == nil {
-            viewModel = CharactersViewModel()
+            viewModel = CharactersViewModel(api: Service.shared.characters)
         }
         if router == nil {
             router = CharactersRouter(from: self, viewModel: viewModel)
